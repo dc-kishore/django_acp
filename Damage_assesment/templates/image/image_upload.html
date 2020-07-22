@@ -1,0 +1,131 @@
+{% load static %}
+{% url 'login' as login_url%}
+<html>
+{% include 'head\head.html'%}
+<head>
+<script>
+
+$(document).ready(function(){
+    $("#tbl").hide();
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  filePreview(this);
+  
+});
+
+$("#btn").click(function(){
+    $("#tbl").show();
+    
+})
+
+function filePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#ctn + img').remove();
+            $('#ctn').after('<img src="'+e.target.result+'" width="400" height="350"/>');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+});
+</script>
+</head>
+<body>
+<main id="main">
+    <!-- ======= Services Section ======= -->
+    <section id="claim" class="my-login-page ">
+      <div class="container col-6">
+        <div class="card fat bg-light ">
+            <div class="card-body">
+            <h4 class="card-title text-center">Upload image</h4>
+            <center>
+      <form id="frm" method='post' role='form'>
+     
+      {% csrf_token %}
+        <div class="custom-file mb-3">
+           <input type="file" class="custom-file-input" id="customFile" name="filename">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>  
+       <div class="form-row justify-content-center">
+        <button id="btn" name="btn" type="submit" class="btn btn-primary btn-small">
+            Submit
+        </button>
+        </div>
+        <div class="mt-4 text-center">
+            <a href="{{login_url}}"></a>
+       </div>
+        
+        <div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-5">
+<div class ="container " id="ctn">
+
+</div>
+</div>
+</div>
+
+      </form>
+      
+<br>
+<table class="table table-dark" id="tbl">
+        <thead>
+          <tr>
+            <th scope="col">Processing Steps</th>
+            <th scope="col">Damage Assessment</th>
+            <th scope="col">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Car validation check</td>
+          
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Damage valiation check</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Damage Localization</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Damage severity</td>
+            
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td><div class ="btn btn-success">Next</td>
+          </tr>
+        </tbody>
+      </table>
+      </center>
+      </div>
+      </div>
+      </div>
+    </section>
+    </main>
+    </body>
+  </html> 
+<!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static "vendor/owl.carousel/owl.carousel.min.js" %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '/js/main.js' %}"></script>

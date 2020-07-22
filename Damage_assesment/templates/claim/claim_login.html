@@ -1,0 +1,39 @@
+{% load static %}
+{% url 'login' as login_url%}
+<html>
+{% include 'head\head.html'%}
+<body>
+<main id="main">
+    <!-- ======= Services Section ======= -->
+    <section id="claim" class="my-login-page ">
+      <div class="container col-6">
+        <div class="card fat bg-light ">
+            <div class="card-body">
+            <h4 class="card-title text-center">Claim Login</h4>
+            <center>
+      <form action="{% url 'image' %}" method='post' role='form'>
+     
+      {% csrf_token %}
+        <div class="col-6 form-group ">
+                    <div class="form-group"><input type="email"  class="form-control" placeholder="Email ID" name="Customerid" required></div>
+            <div class="form-group"><input type="password"  class="form-control" placeholder="Password" name="password" required></div>
+       
+        </div>
+       <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-primary btn-small">
+            Submit
+        </button>
+        </div>
+        <div class="mt-4 text-center">
+            <a href="{{login_url}}"></a>
+       </div>
+        
+      </form>
+      </center>
+      </div>
+      </div>
+      </div>
+    </section>
+    </main>
+    </body>
+  </html>  

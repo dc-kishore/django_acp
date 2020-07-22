@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+{% include 'head\head.html'%}
+{% include 'navbar\navbar1.html' %}
+<body>
+<main id="main">
+<div >
+    <!-- ======= Services Section ======= -->
+    <section id="login" class="my-login-page  bg-light ">
+      <div class="container col-6  bg-success">
+        <div class="card fat mt-5">
+            <div class="card-body ">
+            <h4 class="card-title text-center">Estimated Cost</h4>
+            <center>
+     
+        <div class="col-6 form-group ">
+        Cost estimated from damage: 50000
+        </div>
+       <div class="col-md-4 justify-content-center">
+        <button type="submit" class="btn btn-primary btn-small">Claim</button>
+        <a href="#" role="button" id="cancel" name="cancel" class="btn btn-primary btn-default">Cancel</a>
+        </div>
+        <div class="mt-4 text-center">
+        <div>
+        <label class="checkbox-inline"><input type="checkbox" value=""> Approved</label>
+        </div>
+        <a href="{% url "checkout" %}" role="button" id="cancel" name="cancel" class="btn btn-success">Payment</a>
+       </div>
+      </center>
+      </div>
+      </div>
+      </div>
+    </section>
+    </main>
+    </body>
+    {% include 'footer\footer.html'%}
+  </html>  

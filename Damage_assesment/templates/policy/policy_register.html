@@ -1,0 +1,41 @@
+{% load static %}
+{% url 'login' as login_url%}
+<html>
+{% include 'head\head.html'%}
+<body>
+
+
+<main id="main">
+    <!-- ======= Services Section ======= -->
+    <section id="policy" class="my-login-page  bg-light ">
+      <div class="container col-6  bg-light">
+        <div class="card fat ">
+            <div class="card-body">
+            <h4 class="card-title text-center">POLICY</h4>
+            <center>
+      <form method='post' role='form' >
+     
+      {% csrf_token %}
+        <div class="col-6 form-group ">
+        
+           {{policy_form.as_p}}
+       
+        </div>
+       <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-primary btn-small">
+            Next
+        </button>
+        </div>
+        <div class="mt-4 text-center">
+            <a href="{{login_url}}"></a>
+       </div>
+        
+      </form>
+      </center>
+      </div>
+      </div>
+      </div>
+    </section>
+    </main>
+    </body>
+  </html>  

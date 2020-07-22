@@ -1,0 +1,114 @@
+{% include 'navbar/navbar1.html' %}
+{% include 'head/head.html'  %}
+
+<body >
+<main id="main">
+<section id="upload">
+<div class="container mt-5 col-sm-5">
+  <div class="card fat bg-light ">
+    <div class="card-body">
+      <h4 id="txt1" class="card-title text-center">Upload Image</h4>
+      <h4 id="txt2" class="card-title text-center">Refresh to upload new Image</h4>
+  <br>
+  <form id="frm">
+    <div class="custom-file mb-3">
+      <input type="file" class="custom-file-input" id="customFile" name="filename">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+    <div class="mt-3 text-center ">
+      <button type="button" id="btn" name="btn" class="btn btn-success">Submit</button>
+    </div>
+  </form>
+  <div class="row justify-content-lg-center">
+    <div class="col-sm-5 ">
+      <div class ="container" id="ctn">
+      </div>
+    </div>
+</div>  
+</div>
+<br>
+    <table class="table table-borderless table-light" id="tbl">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Processing Steps</th>
+            <th scope="col">Damage Assessment</th>
+            <th scope="col">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Car validation check</td>
+          
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Damage valiation check</td>
+           
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Damage Localization</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Damage severity</td>
+            
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td><a href="{% url 'estimate' %}" class ="btn btn-success">Next</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+<script>
+
+$(document).ready(function(){
+    $("#tbl").hide();
+    $("#txt2").hide();
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  filePreview(this);
+  
+});
+
+$("#btn").click(function(){
+    $("#tbl").show();
+    
+})
+$("#btn").click(function(){
+    $("#frm").hide();
+    
+})
+$("#btn").click(function(){
+    $("#txt1").hide();
+})
+$("#btn").click(function(){
+    $("#txt2").show();  
+})
+
+function filePreview(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#ctn + img').remove();
+            $('#ctn').after('<img src="'+e.target.result+'" width="200" height="250"/>');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+});
+
+// $("#btn").click(){
+
+// }
+</script>
+</section>
+</main>
+{% include 'footer/footer.html' %}

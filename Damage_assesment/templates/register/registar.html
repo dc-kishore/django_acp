@@ -1,0 +1,38 @@
+{% load static %}
+{% url 'login' as login_url%}
+{% url 'home' %}
+{% include 'navbar/navbar1.html' %}
+{% include 'head\head.html'%}
+<main id="main">
+    <!-- ======= Services Section ======= -->
+    <section id="login" class="my-login-page  bg-light ">
+      <div class="container col-6">
+        <div class="card fat ">
+            <div class="card-body">
+            <h4 class="card-title text-center">Registration</h4>
+            <center>
+      <form  method="POST" action="{{home}}" role='form'>
+     
+      {% csrf_token %}
+        <div class="col-6 form-group ">
+        
+        {{form.as_p}}
+       
+        </div>
+       <div class="form-row justify-content-center">
+        <button type="submit" class="btn btn-primary btn-small">
+            Register
+        </button>
+        </div>
+        <div class="mt-4 text-center">
+            Already have one! <a href="/#login">Login</a>
+       </div>
+        
+      </form>
+      </center>
+      </div>
+      </div>
+      </div>
+    </section>
+    </main>
+  {% include 'footer/footer.html' %}
