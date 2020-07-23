@@ -94,11 +94,18 @@ WSGI_APPLICATION = 'Automatic_Claim_Process.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        
-    }
+   'default': {
+      'ENGINE' : 'djongo',
+      
+       'NAME' : 'django_db', #as named on server
+      
+    #    'HOST' : '127.0.0.1',
+#that is your connection link with your username,password and db name,here i created a db using mlabs of mongodb
+    #    'USER' : 'm001-student',
+    #    'PASSWORD' : 'm001-mongodb-basics',
+    #    'PORT':'27017'
+
+   }
 }
 
 

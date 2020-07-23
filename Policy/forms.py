@@ -1,12 +1,13 @@
+from django.forms import ModelForm
 from django import forms
 from django.contrib.auth import get_user_model
-
+from .models import Policy,Insurance
 
 User=get_user_model()
-class PolicyForm(forms.Form):
+class PolicyForm(ModelForm):
     policy_choices=(
-        ("1","Motor Insurance"),
-        ("2","Other")
+        ("Motor Insurance","Motor Insurance"),
+        ("Other","Other")
     )
     Firstname=forms.CharField(
         label='',
@@ -54,7 +55,7 @@ class PolicyForm(forms.Form):
         )
        
     )
-
+    
     Phone=forms.CharField(
         label='',
         widget=forms.NumberInput(
@@ -64,7 +65,6 @@ class PolicyForm(forms.Form):
             }
         )
     )
-
     
     def clean_email(self):
         email=self.cleaned_data.get('Email')
@@ -73,17 +73,21 @@ class PolicyForm(forms.Form):
         except:
             return email
         raise forms.ValidationError("email is taken")
+    
+    class Meta:
+        model=Policy
+        fields=('Firstname','Lastname','Email','Insurance_type','Address','Phone')
 
-class InsuranceForm(forms.Form):
-    Firstname=forms.CharField(
+class InsuranceForm(ModelForm):
+    Email=forms.EmailField(
         label='',
-        widget=forms.TextInput(
+        widget=forms.EmailInput(
             attrs={
                 "class":"form-control",
-                "placeholder":"Firstname",
+                "placeholder":"Email",
             }
-        ),
         )
+    )
     
     Price=forms.CharField(
         label='',
@@ -106,3 +110,7 @@ class InsuranceForm(forms.Form):
         )
      
     )
+
+    class Meta:
+        model=Insurance
+        fields=('Email','Price','Estimated_amount')

@@ -18,6 +18,7 @@ def index(request):
             print("hai1")
             print(policy_form.cleaned_data)
             context['policy_form']=PolicyForm()
+            policy_form.save()
             return redirect('insurance')
              
     else:
@@ -36,6 +37,7 @@ def index(request):
             context['login_form']=LoginForm()
             username=login_form.cleaned_data.get("username")
             password=login_form.cleaned_data.get("password")
+
             user=authenticate(request,username=username,password=password)
             print(user)
             if user is not None:
@@ -62,8 +64,12 @@ def register_page(request):
         context['form']=RegisterForm()
         username=register_form.cleaned_data.get("username")
         password=register_form.cleaned_data.get("password")
-        new_user=User.objects.create_user(username,password)
+        password1=register_form.cleaned_data.get("password1")
+        email=register_form.cleaned_data.get("Email")
+        new_user=User.objects.create_user(username=username,password=password1,email=email)
+        new_user.save()
         print(username)
+        return redirect("/login")
     return render(request,'register/registar.html',context)
 
 def estimate(request):

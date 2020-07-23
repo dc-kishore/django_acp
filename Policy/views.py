@@ -12,6 +12,7 @@ def insurance(request):
         if insurance_form.is_valid():
             print(insurance_form.cleaned_data)
             context['insurance_form']=InsuranceForm()
+            insurance_form.save()
             return redirect("/#policy")
 
         return render(request,'insurance/insurance.html',context)
