@@ -21,6 +21,8 @@ PROJECT_ROOT= os.path.abspath(os.path.dirname(__file__))
 STATICFILES_DIRS= (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -49,7 +51,7 @@ INSTALLED_APPS = [
     'Policy',
     'checkout',
     'imageupload',
-
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +148,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

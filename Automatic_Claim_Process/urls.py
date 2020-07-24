@@ -17,19 +17,25 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from Damage_assesment.views import index,register_page,about
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings 
+from django.conf.urls.static import static 
 from Policy.views import insurance,policy
-from imageupload.views import image_upload
+from imageupload.views import image_upload,image_display
 from checkout.views import checkout,logout_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index,name="home"),
     path('register/',register_page,name='register'),
     path('upload/',image_upload,name="image"),
+    path('image/',image_display,name="table"),
     path('checkout/',checkout,name='checkout'),
     path('insurance/',insurance,name='insurance'),
     path('estimate/',include("Damage_assesment.urls"),name="estimate"),
     path('logout/', logout_view, name='logout'),
     path('policy/',policy,name="policy"),
+    
 
 ]
 urlpatterns+= staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL,
+                               document_root=settings.MEDIA_ROOT)

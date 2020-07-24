@@ -69,7 +69,7 @@ def register_page(request):
         new_user=User.objects.create_user(username=username,password=password1,email=email)
         new_user.save()
         print(username)
-        return redirect("/login")
+        return redirect("/#login")
     return render(request,'register/registar.html',context)
 
 def estimate(request):
